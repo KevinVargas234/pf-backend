@@ -1,0 +1,52 @@
+{
+  "name": "projecto-final-29b-backend",
+  "version": "1.0.0",
+  "description": "Backend del proyecto final cohorte 29-b grupo 12",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "nodemon -L",
+    "deploy": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FedeMontanari/projecto-final-29b.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FedeMontanari/projecto-final-29b/issues"
+  },
+  "homepage": "https://github.com/FedeMontanari/projecto-final-29b#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.8",
+    "express": "^4.17.1",
+    "express-jwt": "^7.7.7",
+    "express-session": "^1.17.3",
+    "jsonwebtoken": "^8.5.1",
+    "jwks-rsa": "^3.0.0",
+    "morgan": "^1.10.0",
+    "node-fetch": "^3.2.10",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-linkedin-oauth2": "^2.0.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.5.1",
+    "sequelize": "^6.3.5",
+    "stripe": "^11.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "nodemon": "^2.0.6",
+    "supertest": "^6.0.1",
+    "supertest-session": "^4.1.0"
+  }
+}
