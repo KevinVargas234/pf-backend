@@ -4,7 +4,9 @@ const categoryMiddleware = require("./category");
 // const userMiddleware = require("./user");
 const productMiddleware = require ('./product')
 const guard=require("../utils/guard")
+var cors = require('cors')
 const router = Router();
+router.use(cors())
 router.use("/",guard);
 //router.use("/admin", adminMiddleware);
 router.use("/category", categoryMiddleware);
