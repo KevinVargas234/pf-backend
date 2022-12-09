@@ -1,7 +1,7 @@
 const { Router } = require("express");
 // const adminMiddleware = require("./admin");
 const categoryMiddleware = require("./category");
-// const userMiddleware = require("./user");
+ const userMiddleware = require("./user");
 const productMiddleware = require ('./product')
 const guard=require("../utils/guard")
 var cors = require('cors')
@@ -10,7 +10,7 @@ router.use(cors())
 router.use("/",guard);
 //router.use("/admin", adminMiddleware);
 router.use("/category", categoryMiddleware);
-//router.use("/user", userMiddleware);
+router.use("/user", userMiddleware);
 router.use('/product', productMiddleware)
 
 
