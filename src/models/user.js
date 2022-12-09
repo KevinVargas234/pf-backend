@@ -4,11 +4,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "user",
     {
-      id: {
-        type: DataTypes.UUID,
-        primaryKey: true,
-        unique: true,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -22,13 +17,6 @@ module.exports = (sequelize) => {
         unique: true,
         validate: {
           isEmail: true,
-        },
-      },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-          notEmpty: true,
         },
       },
       isAdmin: {

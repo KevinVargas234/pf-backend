@@ -38,17 +38,15 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { id, name, description, image, price, stock, size, category } =
+    const { id, name, description, image, price, stock, category } =
       req.body;
 
     if (
-      !id ||
       !name ||
       !description ||
       !image ||
       !price ||
       !stock ||
-      !size ||
       !category
     ) {
       return res.status(400).json({ message: "Product value is mandatory." });
@@ -70,7 +68,6 @@ router.post("/", async (req, res) => {
         image,
         price,
         stock,
-        size,
       });
       await newProduct.addCategory(productCategory);
       return res.status(201).json({ message: "New Product created." });
