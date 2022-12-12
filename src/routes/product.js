@@ -36,7 +36,7 @@ router.post("/", async (req, res) => {
     ) {
       return res.status(400).json({ message: "Product value is mandatory." });
     }  
-    const newProduct = await Product.findOrCreate({
+    const newProduct = await Product.create({
       name,
       description,
       image,
