@@ -8,7 +8,7 @@ const sequelize = new Sequelize(
   DEPLOY?DB_LINK:`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_USER}`,
   {
     logging: false, // set to console.log to see the raw SQL queries
-    native: true,
+    native: false,
     ssl: true
   }
 );
