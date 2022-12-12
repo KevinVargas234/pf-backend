@@ -1,22 +1,12 @@
 const { Router } = require("express");
-const { Category, Product } = require("../db");
+const { Product } = require("../db");
 const router = Router();
 
 router.get("/", async (req, res) => {
   try {
     const { id } = req.params;
     const { name } = req.query;
-    const productFound = await Product.findAll({
-      include: [
-        {
-          model: Category,
-          attributes: ["name"],
-          through: {
-            attributes: [],
-          },
-        },
-      ],
-    });
+    const productFound = await Product.findAll();
 
     if (id) {
       const productId = productFound.filter((e) => e.id == id);
@@ -38,7 +28,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { id, name, description, image, price, stock, category } =
+    const { name, description, image, price, stock, category } =
       req.body;
 
     if (
@@ -50,28 +40,17 @@ router.post("/", async (req, res) => {
       !category
     ) {
       return res.status(400).json({ message: "Product value is mandatory." });
-    }
-    const productFound = await Product.findAll();
-    const productCategory = await Category.findAll({
-      where: {
-        name: category,
-      },
+    }  
+    const newProduct = await Product.findOrCreate({
+      name,
+      description,
+      image,
+      price,
+      stock,
+      category
     });
-    if (name===100) {
-      const productId = productFound.find((e) => e.id === id);
-      if (productId.length>0)
-        res.status(400).json({ message: "Product Id already exist." });
-    } else {
-      const newProduct = await Product.create({
-        name,
-        description,
-        image,
-        price,
-        stock,
-      });
-      await newProduct.addCategory(productCategory);
-      return res.status(201).json({ message: "New Product created." });
-    }
+    return res.status(201).json({ message: "New Product created.",data:newProduct });
+  
   } catch (e) {
     // console.log(newPokemon)
     console.log(e);
