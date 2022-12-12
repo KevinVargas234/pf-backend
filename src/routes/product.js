@@ -4,16 +4,10 @@ const router = Router();
 
 router.get("/", async (req, res) => {
   try {
-    const { id } = req.params;
     const { name } = req.query;
     const productFound = await Product.findAll();
 
-    if (id) {
-      const productId = productFound.filter((e) => e.id == id);
-      productId.length
-        ? res.status(200).json(productId)
-        : res.status(404).json({ message: "Product ID not found." });
-    } else if (name) {
+    if (name) {
       const productName = productFound.filter((e) =>
         e.name.toLowerCase().includes(name.toLowerCase())
       );
@@ -22,6 +16,7 @@ router.get("/", async (req, res) => {
         : res.status(404).json({ message: "Product Name not found" });
     } else return res.status(200).send(productFound);
   } catch (e) {
+    console.log(e);
     res.status(404).send(e);
   }
 });
