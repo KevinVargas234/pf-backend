@@ -3,7 +3,7 @@ const { Router } = require("express");
 const router = Router();
 
 mercadopago.configure({
-  access_token: "APP_USR-f716fcfe-261f-4d67-8c02-5ebd614ae2f2",
+  access_token: "TEST-8239326594862978-111616-7a01e58af49fede2c38f54d053f7a55d-790202661",
 });
 
  
