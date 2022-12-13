@@ -21,7 +21,26 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/rate", async (req, res) => {
+  const {id,email,stars}=req.body;
+  const productFound = await Product.findAll();
+  const productName = productFound.filter((e) =>e.id===id);
+  if(productName.length){
+    Product.update({
+      rate:{...productName.rate,[email]:stars}
+    },{
+      where: {
+        id: id,
+      }
+  })
+    res.status(200).send(productName)
+  }else
+    res.status(404).json({ message: "Product Name not found" });
+
+
+
+})
+  router.post("/", async (req, res) => {
   try {
     const { name, description, image, price, stock, category } =
       req.body;
