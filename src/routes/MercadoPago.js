@@ -23,43 +23,23 @@ router.post("/generar", async (req, res) => {
 
     })}))
 	
-    let preference = {
-		items:[
-			{
-				title: "titulo",
-				unit_price: 212,
-				quantity: 1,
-			}
-		],
-		back_urls: {
-			"success": "http://localhost:8080/feedback",
-			"failure": "http://localhost:8080/feedback",
-			"pending": "http://localhost:8080/feedback"
-		},
-		auto_return: "approved",
-      //  notification_url:'http://localhost:8080/notificacion'
+
+	let preference = {
+	items: [
+		{
+		title: 'Mi producto',
+		unit_price: 100,
+		quantity: 1,
+		}
+	]
 	};
-
-      /*mercadopago.preferences
-        .create(preference)
-        .then(function (response) {
-          res.json(response.body.init_point)
-		  
-        })
-        .catch(function (error) {
-          console.log('el error', error);
-        });*/
-		await mercadopago.preferences.create(preference)
-		.then(resp=>{
-		  console.log(resp.body)
-		  res.status(200).send(resp.body.id)
-	  })
-		.catch(err=>{
-		  console.log(err)
-		  res.status(400).send(err)
-	  })
-
-
+	mercadopago.preferences.create(preference)
+	.then(function(response){
+	// Este valor reemplazará el string "<%= global.id %>" en tu HTML
+	global.id = response.body.id;
+	}).catch(function(error){
+	console.log(error);
+	});
 		
 
 })
