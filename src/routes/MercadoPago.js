@@ -6,7 +6,7 @@ mercadopago.configure({
   access_token: "APP_USR-f716fcfe-261f-4d67-8c02-5ebd614ae2f2",
 });
 
-
+ 
 router.post("/generar", async (req, res) => {
 
 	console.log()
