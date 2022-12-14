@@ -3,7 +3,7 @@ const { Router } = require("express");
 const router = Router();
 
 mercadopago.configure({
-  access_token: "APP_USR-f716fcfe-261f-4d67-8c02-5ebd614ae2f2",
+  access_token: "APP_USR-1898948534499873-121318-943008c60c6f41ae6fb4f31b5514aa67-1262866903",
 });
 
 
@@ -24,13 +24,7 @@ router.post("/generar", async (req, res) => {
     })}))
 	
     let preference = {
-		items:[
-			{
-				title: "titulo",
-				unit_price: 212,
-				quantity: 1,
-			}
-		],
+		items:itemsC,
 		back_urls: {
 			"success": "http://localhost:8080/feedback",
 			"failure": "http://localhost:8080/feedback",
@@ -51,8 +45,8 @@ router.post("/generar", async (req, res) => {
         });*/
 		await mercadopago.preferences.create(preference)
 		.then(resp=>{
-		  console.log(resp.body)
-		  res.status(200).send(resp.body.id)
+		  console.log(resp.body.init_point)
+		  res.status(200).send(resp.body.init_point)
 	  })
 		.catch(err=>{
 		  console.log(err)
@@ -64,3 +58,11 @@ router.post("/generar", async (req, res) => {
 
 })
 module.exports = router;
+
+
+
+
+
+
+
+
