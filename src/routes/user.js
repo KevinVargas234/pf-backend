@@ -6,7 +6,6 @@ const router = Router();
 
 router.get("/name/:name", async (req, res) => {
   let { name } = req.params;
-  let arr = fullName.split(" ");
   arr = arr.map((e) => {
     let word = e.split("");
     word[0] = word[0].toUpperCase();
@@ -51,6 +50,15 @@ router.get("/id/:id", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const allUsers = await User.findAll();
+    if(req.query.name){
+      var user=allUsers.filter(e=>e.name==req.query.name)
+      if(user.length){
+        res.status(200).json(user[0])
+      }else{
+        res.status(404).send("no se uncontro al usuario "+req.query.name)
+      }
+
+    }else
     return res.json(allUsers);
   } catch (error) {
     return res.status(404).send(console.log(error));
