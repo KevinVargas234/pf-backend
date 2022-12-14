@@ -61,7 +61,8 @@ router.post("/rate", async (req, res) => {
       image,
       price,
       stock,
-      category
+      category,
+      raye:{}
     });
     return res.status(201).json({ message: "New Product created.",data:newProduct });
   
