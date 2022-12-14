@@ -59,7 +59,7 @@ router.get("/", async (req, res) => {
       }
 
     }else
-    return res.json(allUsers);
+    return res.json(allUsers); 
   } catch (error) {
     return res.status(404).send(console.log(error));
   }
