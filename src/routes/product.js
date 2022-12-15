@@ -21,26 +21,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/rate", async (req, res) => {
-  const {id,email,stars}=req.body;
-  const productFound = await Product.findAll();
-  const productName = productFound.filter((e) =>e.id===id);
-  if(productName.length){
-    Product.update({
-      rate:{...productName.rate,[email]:stars}
-    },{
-      where: {
-        id: id,
-      }
-  })
-    res.status(200).send(productName)
-  }else
-    res.status(404).json({ message: "Product Name not found" });
-
-
-
-})
-  router.post("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { name, description, image, price, stock, category } =
       req.body;
@@ -61,8 +42,7 @@ router.post("/rate", async (req, res) => {
       image,
       price,
       stock,
-      category,
-      rate:{}
+      category
     });
     return res.status(201).json({ message: "New Product created.",data:newProduct });
   
@@ -74,11 +54,41 @@ router.post("/rate", async (req, res) => {
 
 router.put("/cambiar", async (req, res) =>{
   const {data}  = req.body;
-  console.log("data ",data)
-  const productFound = await Product.findAll();
- 
- 
 
+   let dataP= JSON.parse(data)
+  const productFound = await Product.findAll();
+  
+  console.log(dataP[0].name)
+
+  for (let i = 0; i < dataP.length; i++) {
+    const productName = productFound.filter((e) =>
+        e.name.toLowerCase().includes(dataP[i].name.toLowerCase())
+      );
+    
+      console.log("Producto antes del cambio" ,productName[0])
+      const updateProducto ={
+        id: productName[0].id ,
+        name: productName[0].name,
+        category: productName[0].category,
+        description: productName[0].description,
+        image: productName[0].image,        
+        price: productName[0].price,
+        stock : { cantidad: String( dataP[0].quantity)} ,
+        rate: null,
+      }
+      console.log("Producto despues del cambio ",updateProducto)
+
+      Product.update(updateProducto ,
+       { where: {
+          id: updateProducto.id ,
+        }}
+
+      )
+   
+  }
+  
+ 
+  res.status(200).send(data)
 
 })
 
