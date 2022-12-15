@@ -67,9 +67,19 @@ router.post("/rate", async (req, res) => {
     return res.status(201).json({ message: "New Product created.",data:newProduct });
   
   } catch (e) {
-    // console.log(newPokemon)
+
     console.log(e);
   }
 });
+
+router.put("/cambiar", async (req, res) =>{
+  const {data}  = req.body;
+  console.log("data ",data)
+  const productFound = await Product.findAll();
+ 
+ 
+
+
+})
 
 module.exports = router;

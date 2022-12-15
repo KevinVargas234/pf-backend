@@ -8,29 +8,19 @@ mercadopago.configure({
 
 router.post("/generar", async (req, res) => {
 
-	console.log()
 	const {Ncart}  = req.body;
 
-	let itemsC = Ncart.map((el=> {return({
-		id: el.id,
-		title: el.name,
-		currency_id: "ARS",
-		picture_url: el.image,
-		description: el.description,
-		quantity: 1,
-		unit_price: el.price
 
-    })}))
 	
     let preference = {
-		items:itemsC,
+		items:Ncart,
 		back_urls: {
-			"success": "http://localhost:8080/feedback",
-			"failure": "http://localhost:8080/feedback",
-			"pending": "http://localhost:8080/feedback"
+			"success": "http://localhost:3000/feedback",
+			"failure": "http://localhost:3000/feedback",
+			"pending": "http://localhost:3000/feedback"
 		},
 		auto_return: "approved",
-      //  notification_url:'http://localhost:8080/notificacion'
+       // notification_url:'http://localhost:3000/notificacion'
 	};
 
       /*mercadopago.preferences
@@ -44,7 +34,7 @@ router.post("/generar", async (req, res) => {
         });*/
 		await mercadopago.preferences.create(preference)
 		.then(resp=>{
-		  console.log(resp.body.init_point)
+		 // console.log(resp.body.init_point)
 		  res.status(200).send(resp.body.init_point)
 	  })
 		.catch(err=>{
