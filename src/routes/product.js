@@ -86,14 +86,7 @@ router.put("/cambiar", async (req, res) =>{
     
       console.log("Producto antes del cambio" ,productName[0])
       const updateProducto ={
-        id: productName[0].id ,
-        name: productName[0].name,
-        category: productName[0].category,
-        description: productName[0].description,
-        image: productName[0].image,        
-        price: productName[0].price,
         stock : { cantidad: String( dataP[0].quantity)} ,
-        rate: null,
       }
       console.log("Producto despues del cambio ",updateProducto)
 
