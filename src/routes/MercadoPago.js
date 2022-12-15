@@ -6,7 +6,6 @@ mercadopago.configure({
   access_token: "APP_USR-1898948534499873-121318-943008c60c6f41ae6fb4f31b5514aa67-1262866903",
 });
 
-
 router.post("/generar", async (req, res) => {
 
 	const {Ncart}  = req.body;
@@ -47,12 +46,6 @@ router.post("/generar", async (req, res) => {
 		
 
 })
+
 module.exports = router;
-
-
-
-
-
-
-
 
