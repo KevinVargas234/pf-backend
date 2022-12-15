@@ -49,7 +49,7 @@ module.exports = (sequelize) => {
     */ 
     rate:{
       type:DataTypes.JSON,
-      allowNull:false
+     
     }
   });
 };
