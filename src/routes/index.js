@@ -10,8 +10,6 @@ const router = Router();
 router.use(cors())
 router.use("/",guard);
 router.use("/mc", mercadoPagoMiddleware);
-
-router.use("/mc", mercadoPagoMiddleware);
 router.use("/user", userMiddleware);
 router.use('/product', productMiddleware)
 
